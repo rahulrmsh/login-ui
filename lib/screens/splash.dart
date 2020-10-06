@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen>
       parent: _controller,
       curve: Curves.easeInCubic,
     ));
-    Timer(Duration(seconds: 6), () {
+    Timer(Duration(seconds: 5), () {
       setState(() {
         _visible = !_visible;
       });
