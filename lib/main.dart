@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login_ui/screens/login.dart';
 import 'package:login_ui/screens/splash.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class _MainAppState extends State<MainApp> {
       initialRoute: 'splash',
       routes: {
         'splash': (context) => SplashScreen(),
+        'login': (context) => UserLogin(),
       },
     );
   }
