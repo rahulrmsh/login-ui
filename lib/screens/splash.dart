@@ -81,31 +81,35 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: height * 0.08),
-                child: Text(
-                  'Design',
-                  style: GoogleFonts.acme(
-                      fontWeight: FontWeight.bold,
-                      fontSize: width * 0.15,
-                      color: mainBgColor),
-                ),
-              ),
-            ),
             AnimatedOpacity(
               duration: Duration(milliseconds: 1000),
               opacity: _visible ? 1.0 : 0.0,
-              child: Align(
-                alignment: Alignment.center,
-                child: Image(
-                  image: AssetImage('images/lock.png'),
-                  height: height * 0.70,
-                  width: width * 0.70,
-                ),
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: height * 0.08),
+                      child: Text(
+                        'Design',
+                        style: GoogleFonts.acme(
+                            fontWeight: FontWeight.bold,
+                            fontSize: width * 0.15,
+                            color: mainBgColor),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Image(
+                      image: AssetImage('images/lock.png'),
+                      height: height * 0.70,
+                      width: width * 0.70,
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
