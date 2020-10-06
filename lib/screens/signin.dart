@@ -23,7 +23,6 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     Firebase.initializeApp().whenComplete(() {
-      print("completed");
       setState(() {});
     });
   }
@@ -65,7 +64,7 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
                         top: 50,
                       ),
                       child: Text(
-                        'Login',
+                        'Sign In',
                         style: GoogleFonts.roboto(
                           color: mainBgColor,
                           fontSize: 56,
@@ -177,46 +176,24 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
                                   );
                                 } else {
                                   try {
-                                    UserCredential newUser =
-                                        await _auth.signInWithEmailAndPassword(
+                                    UserCredential newUser = await _auth
+                                        .createUserWithEmailAndPassword(
                                             email: userMail,
                                             password: userPassword);
-                                    try {
-                                      await _firestore
-                                          .collection("admin")
-                                          .doc(userMail)
-                                          .get()
-                                          .then(
-                                        (value) {
-                                          if (newUser != null && value.exists) {
-                                            Navigator.pushNamed(
-                                                context, 'adminHome');
-                                          } else {
-                                            _scaffoldKeyUser.currentState
-                                                .showSnackBar(SnackBar(
-                                                    backgroundColor:
-                                                        errorCardColor,
-                                                    content: Text(
-                                                      '''You're Not an Admin''',
-                                                      style: TextStyle(
-                                                          color: mainBgColor),
-                                                    ),
-                                                    duration:
-                                                        Duration(seconds: 3)));
-                                          }
-                                        },
-                                      );
-                                    } catch (e) {
-                                      print(e);
+                                    if (newUser != null) {
+                                      Navigator.of(context).popAndPushNamed('');
+                                    } else {
                                       _scaffoldKeyUser.currentState
                                           .showSnackBar(SnackBar(
-                                              backgroundColor: errorCardColor,
-                                              content: Text(
-                                                '''You're Not an Admin''',
-                                                style: TextStyle(
-                                                    color: mainBgColor),
-                                              ),
-                                              duration: Duration(seconds: 3)));
+                                        backgroundColor: errorCardColor,
+                                        content: Text(
+                                          'Error Occured. Try Again.',
+                                          style: GoogleFonts.raleway(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        duration: Duration(seconds: 3),
+                                      ));
                                     }
                                   } on FirebaseAuthException catch (e) {
                                     if (e.code == 'user-not-found') {
