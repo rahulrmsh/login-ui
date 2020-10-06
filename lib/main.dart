@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:login_ui/screens/login.dart';
 import 'package:login_ui/screens/splash.dart';
+import 'package:login_ui/screens/welcome.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,7 @@ class _MainAppState extends State<MainApp> {
       routes: {
         'splash': (context) => SplashScreen(),
         'login': (context) => UserLogin(),
+        'welcome': (context) => Welcome(),
       },
     );
   }
