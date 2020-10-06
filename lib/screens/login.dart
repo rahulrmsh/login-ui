@@ -23,7 +23,6 @@ class _UserLoginState extends State<UserLogin> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     Firebase.initializeApp().whenComplete(() {
-      print("completed");
       setState(() {});
     });
   }
@@ -35,7 +34,7 @@ class _UserLoginState extends State<UserLogin> with TickerProviderStateMixin {
     final double width = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () {
-        Navigator.popAndPushNamed(context, 'login');
+        Navigator.popAndPushNamed(context, 'welcome');
         return Future.value(false);
       },
       child: SafeArea(
