@@ -9,12 +9,35 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<Offset> offsetTop;
+  Animation<Offset> offsetBottom;
   bool _visible = true;
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () {
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 4),
+      vsync: this,
+    )..forward();
+    offsetTop = Tween<Offset>(
+      begin: Offset(0, 0.0),
+      end: Offset(0.0, -1.0),
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInCubic,
+    ));
+    offsetBottom = Tween<Offset>(
+      begin: Offset(0, 0.0),
+      end: Offset(0.0, 1.0),
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInCubic,
+    ));
+    Timer(Duration(seconds: 6), () {
       setState(() {
         _visible = !_visible;
       });
@@ -50,67 +73,76 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         resizeToAvoidBottomPadding: false,
-        body: Stack(
-          children: [
-            Align(
-              child: Container(
-                color: topContainer,
-                width: width,
-                height: height * 0.50,
-              ),
-              alignment: Alignment.topCenter,
-            ),
-            Align(
-              child: Container(
-                color: bottomContainer,
-                width: width,
-                height: height * 0.50,
-              ),
-              alignment: Alignment.bottomCenter,
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: EdgeInsets.only(top: height * 0.08),
-                child: Text(
-                  'Login',
-                  style: GoogleFonts.acme(
-                      fontWeight: FontWeight.bold,
-                      fontSize: width * 0.15,
-                      color: mainBgColor),
-                ),
-              ),
-            ),
-            AnimatedOpacity(
-              duration: Duration(milliseconds: 1000),
-              opacity: _visible ? 1.0 : 0.0,
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: height * 0.08),
-                      child: Text(
-                        'Design',
-                        style: GoogleFonts.acme(
-                            fontWeight: FontWeight.bold,
-                            fontSize: width * 0.15,
-                            color: mainBgColor),
+        backgroundColor: blueColor,
+        body: Container(
+          child: Stack(
+            children: [
+              SlideTransition(
+                position: offsetTop,
+                child: Stack(
+                  children: [
+                    Align(
+                      child: Container(
+                        color: topContainer,
+                        width: width,
+                        height: height * 0.50,
+                      ),
+                      alignment: Alignment.topCenter,
+                    ),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: height * 0.08),
+                        child: Text(
+                          'Login',
+                          style: GoogleFonts.acme(
+                              fontWeight: FontWeight.bold,
+                              fontSize: width * 0.15,
+                              color: mainBgColor),
+                        ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Image(
-                      image: AssetImage('images/lock.png'),
-                      height: height * 0.70,
-                      width: width * 0.70,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+              SlideTransition(
+                position: offsetBottom,
+                child: Stack(
+                  children: [
+                    Align(
+                      child: Container(
+                        color: bottomContainer,
+                        width: width,
+                        height: height * 0.50,
+                      ),
+                      alignment: Alignment.bottomCenter,
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: height * 0.08),
+                        child: Text(
+                          'Design',
+                          style: GoogleFonts.acme(
+                              fontWeight: FontWeight.bold,
+                              fontSize: width * 0.15,
+                              color: mainBgColor),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Image(
+                        image: AssetImage('images/lock.png'),
+                        height: height * 0.70,
+                        width: width * 0.70,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -20,7 +20,7 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 500),
       vsync: this,
     )..forward();
     offsetTop = Tween<Offset>(
@@ -112,7 +112,7 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
                               Navigator.popAndPushNamed(context, 'userLogin');
                             },
                             child: Text(
-                              'User',
+                              'Log In',
                               style: GoogleFonts.raleway(
                                 color: blueColor,
                                 fontSize: 22,
@@ -141,7 +141,7 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
                               Navigator.popAndPushNamed(context, 'adminLogin');
                             },
                             child: Text(
-                              'Admin',
+                              'Sign In',
                               style: GoogleFonts.raleway(
                                 color: mainBgColor,
                                 fontSize: 22,
