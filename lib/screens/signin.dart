@@ -10,12 +10,12 @@ import 'package:login_ui/utilities/constants.dart';
 final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
 
-class AdminLogin extends StatefulWidget {
+class Signin extends StatefulWidget {
   @override
-  _AdminLoginState createState() => _AdminLoginState();
+  _SigninState createState() => _SigninState();
 }
 
-class _AdminLoginState extends State<AdminLogin> with TickerProviderStateMixin {
+class _SigninState extends State<Signin> with TickerProviderStateMixin {
   String userMail = '';
   String userPassword = '';
   GlobalKey<ScaffoldState> _scaffoldKeyUser = GlobalKey();
@@ -50,7 +50,7 @@ class _AdminLoginState extends State<AdminLogin> with TickerProviderStateMixin {
               Align(
                 alignment: Alignment.topCenter,
                 child: Image(
-                  image: AssetImage('images/admin.png'),
+                  image: AssetImage('images/signin.png'),
                   fit: BoxFit.contain,
                 ),
               ),
