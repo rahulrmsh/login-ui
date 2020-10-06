@@ -180,42 +180,9 @@ class _UserLoginState extends State<UserLogin> with TickerProviderStateMixin {
                                         await _auth.signInWithEmailAndPassword(
                                             email: userMail,
                                             password: userPassword);
-                                    try {
-                                      await _firestore
-                                          .collection("user")
-                                          .doc(userMail)
-                                          .get()
-                                          .then(
-                                        (value) {
-                                          if (newUser != null && value.exists) {
-                                            Navigator.pushNamed(
-                                                context, 'userHome');
-                                          } else {
-                                            _scaffoldKeyUser.currentState
-                                                .showSnackBar(SnackBar(
-                                                    backgroundColor:
-                                                        errorCardColor,
-                                                    content: Text(
-                                                      '''You're Not a User''',
-                                                      style: TextStyle(
-                                                          color: mainBgColor),
-                                                    ),
-                                                    duration:
-                                                        Duration(seconds: 3)));
-                                          }
-                                        },
-                                      );
-                                    } catch (e) {
-                                      print(e);
-                                      _scaffoldKeyUser.currentState
-                                          .showSnackBar(SnackBar(
-                                              backgroundColor: errorCardColor,
-                                              content: Text(
-                                                '''You're Not a User.''',
-                                                style: TextStyle(
-                                                    color: mainBgColor),
-                                              ),
-                                              duration: Duration(seconds: 3)));
+                                    if (newUser != null) {
+                                      Navigator.of(context)
+                                          .popAndPushNamed('home');
                                     }
                                   } on FirebaseAuthException catch (e) {
                                     if (e.code == 'user-not-found') {

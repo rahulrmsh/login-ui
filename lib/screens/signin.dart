@@ -18,6 +18,7 @@ class Signin extends StatefulWidget {
 class _SigninState extends State<Signin> with TickerProviderStateMixin {
   String userMail = '';
   String userPassword = '';
+  String userName = '';
   GlobalKey<ScaffoldState> _scaffoldKeyUser = GlobalKey();
   @override
   void initState() {
@@ -35,7 +36,7 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
     return SafeArea(
       child: WillPopScope(
         onWillPop: () {
-          Navigator.popAndPushNamed(context, 'login');
+          Navigator.popAndPushNamed(context, 'welcome');
           return Future.value(false);
         },
         child: Scaffold(
@@ -74,14 +75,44 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.1, vertical: height * 0.1),
+                    padding: EdgeInsets.only(
+                      left: width * 0.05,
+                      right: width * 0.05,
+                      bottom: height * 0.1,
+                    ),
                     child: Column(
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Column(
                             children: <Widget>[
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child: TextField(
+                                  style: TextStyle(color: mainBgColor),
+                                  keyboardType: TextInputType.emailAddress,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      userName = value;
+                                    });
+                                  },
+                                  onSubmitted: (value) {
+                                    setState(() {
+                                      userName = value;
+                                    });
+                                  },
+                                  decoration: InputDecoration(
+                                      hintText: "User Name",
+                                      hintStyle: TextStyle(color: mainBgColor),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: mainBgColor),
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      border: InputBorder.none),
+                                ),
+                              ),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10),
@@ -161,7 +192,9 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
                             if (result.isNotEmpty &&
                                 result[0].rawAddress.isNotEmpty) {
                               try {
-                                if (userMail == '' || userPassword == '') {
+                                if (userMail == '' ||
+                                    userPassword == '' ||
+                                    userName == '') {
                                   _scaffoldKeyUser.currentState.showSnackBar(
                                     SnackBar(
                                       backgroundColor: errorCardColor,
@@ -185,8 +218,9 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
                                       await _firestore
                                           .collection('users')
                                           .doc(userMail)
-                                          .set({'name': ''});
-                                      Navigator.of(context).popAndPushNamed('');
+                                          .set({'name': userName});
+                                      Navigator.of(context)
+                                          .popAndPushNamed('home');
                                     } else {
                                       _scaffoldKeyUser.currentState
                                           .showSnackBar(SnackBar(

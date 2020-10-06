@@ -15,4 +15,5 @@ final Color blueColor = Color(0xFF006BFF);
 final Color userColor = Color(0xFF58c0e7);
 final Color adminColor = Color(0xFF8A4D7B);
 final Color meTextColor = Color(0xFF8A4D7B);
-final Color homeBgColor = Color(0xFFF8F9FA);
+final Color homeBgColor = Color(0xFFF3F0E7);
+final Color homeTextColor = Color(0xFF332211);
