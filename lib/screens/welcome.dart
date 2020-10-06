@@ -138,7 +138,7 @@ class _WelcomeState extends State<Welcome> with TickerProviderStateMixin {
                             height: 50,
                             color: blueColor,
                             onPressed: () {
-                              Navigator.popAndPushNamed(context, 'adminLogin');
+                              Navigator.popAndPushNamed(context, 'signin');
                             },
                             child: Text(
                               'Sign In',

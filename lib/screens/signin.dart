@@ -180,7 +180,12 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
                                         .createUserWithEmailAndPassword(
                                             email: userMail,
                                             password: userPassword);
+
                                     if (newUser != null) {
+                                      await _firestore
+                                          .collection('users')
+                                          .doc(userMail)
+                                          .set({'name': ''});
                                       Navigator.of(context).popAndPushNamed('');
                                     } else {
                                       _scaffoldKeyUser.currentState
@@ -252,7 +257,7 @@ class _SigninState extends State<Signin> with TickerProviderStateMixin {
                           }
                         },
                         child: Text(
-                          'Log In',
+                          'Sign In',
                           style: GoogleFonts.raleway(
                             color: mainBgColor,
                             fontSize: 22,
