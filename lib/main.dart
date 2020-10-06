@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login_ui/screens/home.dart';
 import 'package:login_ui/screens/login.dart';
+import 'package:login_ui/screens/signin.dart';
 import 'package:login_ui/screens/splash.dart';
 import 'package:login_ui/screens/welcome.dart';
 
@@ -27,6 +29,8 @@ class _MainAppState extends State<MainApp> {
         'splash': (context) => SplashScreen(),
         'login': (context) => UserLogin(),
         'welcome': (context) => Welcome(),
+        'signin': (context) => Signin(),
+        'home': (context) => HomeScreen(),
       },
     );
   }
