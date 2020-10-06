@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-final Color topContainer = Color(0xFF008455);
-final Color bottomContainer = Color(0xFF011655);
+final Color topContainer = Color(0xFFFACB03);
+final Color bottomContainer = Color(0xFFFF6510);
 final Color mainBgColor = Colors.white;
 final Color mainAdminColor = Color(0xFFF0F2FD);
 final Color cardColor = Color(0xffC81D77);
