@@ -2,7 +2,7 @@
     package="com.example.login_ui">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="login_ui"
+        android:label="Login Design"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
