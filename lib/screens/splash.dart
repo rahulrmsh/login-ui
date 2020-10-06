@@ -53,24 +53,18 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Stack(
           children: [
             Align(
-              child: Hero(
-                tag: 'topContainer',
-                child: Container(
-                  color: topContainer,
-                  width: width,
-                  height: height * 0.50,
-                ),
+              child: Container(
+                color: topContainer,
+                width: width,
+                height: height * 0.50,
               ),
               alignment: Alignment.topCenter,
             ),
             Align(
-              child: Hero(
-                tag: 'bottomContainer',
-                child: Container(
-                  color: bottomContainer,
-                  width: width,
-                  height: height * 0.50,
-                ),
+              child: Container(
+                color: bottomContainer,
+                width: width,
+                height: height * 0.50,
               ),
               alignment: Alignment.bottomCenter,
             ),
@@ -79,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Padding(
                 padding: EdgeInsets.only(top: height * 0.08),
                 child: Text(
-                  'Currency',
+                  'Login',
                   style: GoogleFonts.acme(
                       fontWeight: FontWeight.bold,
                       fontSize: width * 0.15,
@@ -92,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Padding(
                 padding: EdgeInsets.only(bottom: height * 0.08),
                 child: Text(
-                  'Converter',
+                  'Design',
                   style: GoogleFonts.acme(
                       fontWeight: FontWeight.bold,
                       fontSize: width * 0.15,
